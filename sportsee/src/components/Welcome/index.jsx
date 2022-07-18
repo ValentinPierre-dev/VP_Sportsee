@@ -1,11 +1,16 @@
-import styled from "styled-components";
-import colors from "../../utils/style/colors";
+import styled from 'styled-components'
+import colors from '../../utils/style/colors';
 
-function Welcome() {
+const Firstname = styled.span`
+    color: ${colors.primary}
+`
+
+function Welcome({ firstname }) {
     return (
-      <Background>
-
-      </Background>
+        <div>
+            <h1>Bonjour <Firstname>{firstname}</Firstname></h1>
+            <h2>Félicitation ! Vous avez explosé vos objectifs hier 👏</h2>
+        </div>
     );
   }
   

@@ -16,7 +16,12 @@ const GlobalStyle = createGlobalStyle`
       margin: auto;
     }
     h1 {
+      font-size: 48px;
       margin: 0;
+    }
+    h2 {
+      font-size: 18px;
+      margin: 30px 0 60px 0;
     }
 `;
 
@@ -33,7 +38,9 @@ root.render(
     <Content>
       <VerticalMenu />
       <Routes>
-        <Route exact path="/" element={<Profil />} />
+        <Route path="/user" element={<Profil />}>
+          <Route path=":userId" element={<Profil />} />
+        </Route>
       </Routes>
     </Content>
   </BrowserRouter>

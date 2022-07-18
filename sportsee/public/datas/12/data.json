@@ -1,0 +1,25 @@
+{
+        "id": "12",
+        "firstname": "Thomas",
+        "lastname": "Dupont",
+        "age": 18,
+        "todayScore": 12,
+        "keydata": {
+            "calories": 1.930,
+            "proteins": 155,
+            "glucids": 290,
+            "lipids": 50
+        },
+        "performance": {
+            "intensity": 30,
+            "speed": 80,
+            "strength": 80,
+            "stamina": 80,
+            "energy": 80,
+            "cardio": 80
+        }
+        
+}
+
+
+  
