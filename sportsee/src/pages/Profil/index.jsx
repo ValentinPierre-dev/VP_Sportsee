@@ -49,7 +49,7 @@ function Profil() {
 
   const { userId } = useParams()
 
-  const { data, isLoading, error } = useFetch(`http://localhost:3000/datas/${userId}/data.json`)
+  const { data, isLoading, error } = useFetch(`http://localhost:3000/user/${userId}/data.json`)
   const userData = data
   console.log(userData.firstname)
 

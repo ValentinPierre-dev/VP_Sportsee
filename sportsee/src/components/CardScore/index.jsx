@@ -1,3 +1,6 @@
+import { useFetch } from '../../utils/hooks'
+import { useParams } from 'react-router-dom'
+import { Loader } from '../../utils/style/Atoms'
 import styled from 'styled-components'
 import { RadialBar, RadialBarChart, ResponsiveContainer } from 'recharts';
 import colors from '../../utils/style/colors';
@@ -35,17 +38,33 @@ const ScoreResult = styled.strong`
     font-size: 2.1rem;
 `
 
-const scoreValue = [
-    { value: 1, fill: 'transparent' },
-    { value: 0.50, fill:colors.primary },
-  ];
-
 function CardScore() {
-    return (
+
+    const { userId } = useParams()
+
+    const { data, isLoading, error } = useFetch(`http://localhost:3000/user/${userId}/data.json`)
+    const userData = data
+
+    const datas = userData.todayScore
+
+    console.log(datas)
+
+    const scoreValue = [
+        { value: 100, fill: 'transparent' },
+        { value: datas, fill:colors.primary },
+      ];
+  
+    if (error) {
+      return <span>Oups il y a eu un problème</span>
+    }
+
+    return isLoading ? (
+        <Loader />
+      ) : (
         <CardContainer>
             <Title>Score</Title>
             <ScoreContent>
-                <ScoreResult>{12}%</ScoreResult>
+                <ScoreResult>{datas}%</ScoreResult>
                 <br />
                 <span>
                 de votre

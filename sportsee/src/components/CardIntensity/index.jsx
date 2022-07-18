@@ -1,8 +1,9 @@
 import { useFetch } from '../../utils/hooks'
+import { useParams } from 'react-router-dom'
 import { Loader } from '../../utils/style/Atoms'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors';
-import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from 'recharts';
 
 const CardContainer = styled.div`
     height: 260px;
@@ -13,33 +14,35 @@ const CardContainer = styled.div`
 
 function CardIntensity() {
 
-    const { data, isLoading, error } = useFetch(`http://localhost:3000/datas/data.json`)
+    const { userId } = useParams()
+
+    const { data, isLoading, error } = useFetch(`http://localhost:3000/user/${userId}/performance.json`)
     const userData = data
 
     const datas = [
         {
           subject: "Intensité",
-          value: 120,
+          value: userData.intensity
         },
         {
           subject: "Vitesse",
-          value: 98,
+          value: userData.speed
         },
         {
           subject: "Force",
-          value: 86,
+          value: userData.strength
         },
         {
           subject: "Endurance",
-          value: 99,
+          value: userData.stamina
         },
         {
           subject: "Energie",
-          value: 85,
+          value: userData.energy
         },
         {
           subject: "Cardio",
-          value: 65,
+          value: userData.cardio
         }
       ]
   
