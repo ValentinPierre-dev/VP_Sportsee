@@ -1,0 +1,16 @@
+// Main SASS
+
+// Utils
+@import './Utils/variables.scss';
+// Base
+@import './Base/global.scss';
+// Components
+@import './Components/welcome.scss';
+@import './Components/loader.scss';
+// Layouts
+@import './Layouts/header.scss';
+@import './Layouts/sidemenu.scss';
+@import './Layouts/analytics-main.scss';
+@import './Layouts/analytics-side.scss';
+// Pages
+@import './Pages/profil.scss';

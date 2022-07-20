@@ -1,23 +1,16 @@
-import { useFetch } from '../../utils/hooks'
-import { useParams } from 'react-router-dom'
-import { Loader } from '../../utils/style/Atoms'
-import styled from 'styled-components'
+// React
+import React, { useEffect, useState } from 'react';
+import { Navigate, useParams } from 'react-router-dom';
+// Service
+import { service } from '../../services/Service.js';
+// Components
 import Welcome from '../../components/Welcome'
-import CardActivity from '../../components/CardActivity'
-import CardDuration from '../../components/CardDuration'
-import CardIntensity from '../../components/CardIntensity'
-import CardScore from '../../components/CardScore'
-import CardKeyData from '../../components/CardKeyData'
-import calories from '../../assets/calories.svg'
-import proteins from '../../assets/proteins.svg'
-import glucids from '../../assets/glucids.svg'
-import lipids from '../../assets/lipids.svg'
+import Loader from '../../components/Loader';
+import AnalyticsMain from '../../components/AnalyticsMain/index.jsx';
+import AnalyticsSide from '../../components/AnalyticsSide/index.jsx';
 
-const ProfilWapper = styled.div`
-  width: 85%;
-  margin: 60px auto;
-`
-const ProfilContent = styled.div`
+
+/*const ProfilContent = styled.div`
   display: flex;
   flex-direction: row;
 `
@@ -41,61 +34,95 @@ const ProfilMiniCards = styled.div`
   flex-direction: row;
   justify-content: space-between;
   margin-top: 30px;
-`
+`*/
 
 
 
 function Profil() {
 
-  const { userId } = useParams()
+    // get id from url
+    const userId = useParams().id;
 
-  const { data, isLoading, error } = useFetch(`http://localhost:3000/user/${userId}/data.json`)
-  const userData = data
-  console.log(userData.firstname)
+    // init State
+    const [loading, setLoading] = useState(true);
+    const [keyData, setKeyData] = useState(null);
+    const [activity, setActivity] = useState([]);
+    const [average, setAverage] = useState([]);
+    const [performance, setPerformance] = useState([]);
+  
+    // get Data after update state
+    useEffect(() => {
+      const getKeyData = async () => {
+        return service.getMainData(userId);
+      };
+  
+      getKeyData()
+        .then((user) => {
+          setKeyData(user)
+          setLoading(false)})
+        .catch((e) => {
+          console.log(e);
+          setLoading(false);
+        });
+    }, [userId]);
 
-  if (error) {
-    return <span>Oups il y a eu un problème</span>
-  }
+    useEffect(() => {
+      if (keyData) {
+        const getActivity = async () => {
+          return service.getUserActivity(userId);
+        };
+  
+        const getAverage = async () => {
+          return service.getUserAverage(userId);
+        };
+  
+        const getPerformance = async () => {
+          return service.getUserPerformance(userId);
+        };
+  
+        Promise.all([getActivity(), getAverage(), getPerformance()])
+          .then((values) => {
+            setActivity(values[0]);
+            setAverage(values[1]);
+            setPerformance(values[2]);
+          })
+          .catch((e) => {
+            console.log(e);
+          })
+          .finally(() => {
+            setTimeout(() => {
+              setLoading(false);
+            }, 1500);
+          });
+      }
+    }, [keyData, userId]);
 
-  return isLoading ? (
-    <Loader />
-  ) : (
-    <ProfilWapper>
-        <Welcome firstname={userData.firstname} />
-        <ProfilContent>
-          <ProfilActivity>
-            <CardActivity />
-            <ProfilMiniCards>
-              <CardDuration />
-              <CardIntensity data={userData.radar} />
-              <CardScore />
-            </ProfilMiniCards>
-          </ProfilActivity>
-          <ProfilKeydatas>
-            <CardKeyData
-              dataValue={userData.keydata.calories}
-              dataIcon={calories}
-              dataType="calories"
-            />
-            <CardKeyData
-              dataValue={userData.keydata.proteins}
-              dataIcon={proteins}
-              dataType="proteins"
-            />
-            <CardKeyData
-              dataValue={userData.keydata.glucids}
-              dataIcon={glucids}
-              dataType="glucids"
-            />
-            <CardKeyData
-              dataValue={userData.keydata.lipids}
-              dataIcon={lipids}
-              dataType="lipids"
-            />
-          </ProfilKeydatas>
-        </ProfilContent>
-    </ProfilWapper>
-  );
+    if (loading) {
+      if (
+        !loading &&
+        (keyData === null || keyData === undefined || keyData === false)
+      ) {
+        setLoading(false);
+        console.log('error')
+        return <Navigate to="not-found" />;
+      }
+      return <Loader />;
+    }
+    // if loading is over or there is no data
+    return (
+      <div className='profil'>
+        <Welcome firstname={keyData} />
+        <div className='profil-content'>
+          <AnalyticsMain 
+            activity={activity} 
+            average={average}
+            performance={performance}
+            score={keyData}
+          />
+          <AnalyticsSide analyticsData={keyData.keyData} />
+        </div>
+      </div>
+    );
 }
 
 export default Profil;

@@ -1,47 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import styled, { createGlobalStyle } from "styled-components";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import './style/reset.css';
+import './style/sass/main.scss';
 import Header from "./components/Header";
-import VerticalMenu from './components/VerticalMenu';
+import SideMenu from './components/SideMenu';
 import Profil from './pages/Profil';
 
-const GlobalStyle = createGlobalStyle`
-    * {
-      font-family: 'Roboto', Helvetica, sans-serif;
-    }
-    body {
-      width: 100%;
-      min-height: 100vh;
-      margin: auto;
-    }
-    h1 {
-      font-size: 48px;
-      margin: 0;
-    }
-    h2 {
-      font-size: 18px;
-      margin: 30px 0 60px 0;
-    }
-`;
 
-const Content = styled.div`
-    display: flex;
-    flex-direction: row;
-`
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-    <GlobalStyle />
     <Header />
-    <Content>
-      <VerticalMenu />
+    <div className='content'>
+      <SideMenu />
       <Routes>
-        <Route path="/user" element={<Profil />}>
-          <Route path=":userId" element={<Profil />} />
-        </Route>
+        <Route path="/" exact element={<Navigate replace to="/user/12" />} />
+        <Route path="/user/:id/" element={<Profil />} />
       </Routes>
-    </Content>
+    </div>
   </BrowserRouter>
 );

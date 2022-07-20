@@ -1,9 +1,8 @@
-import { useFetch } from '../../utils/hooks'
-import { useParams } from 'react-router-dom'
-import { Loader } from '../../utils/style/Atoms'
-import styled from 'styled-components'
+// React
+import React from 'react';
 import { RadialBar, RadialBarChart, ResponsiveContainer } from 'recharts';
-import colors from '../../utils/style/colors';
+import styled from 'styled-components'
+import colors from '../../../style/colors';
 
 const CardContainer = styled.div`
     height: 260px;
@@ -38,33 +37,24 @@ const ScoreResult = styled.strong`
     font-size: 2.1rem;
 `
 
-function CardScore() {
+function CardScore({ score }) {
 
-    const { userId } = useParams()
+  const scoreData = score.todayScore || score.score;
 
-    const { data, isLoading, error } = useFetch(`http://localhost:3000/user/${userId}/data.json`)
-    const userData = data
+  const scoreValue = [
+    { value: 1, fill: 'transparent' },
+    { value: scoreData, fill: '#ff0101' },
+  ];
 
-    const datas = userData.todayScore
+  if (!scoreData) {
+    return null;
+  }
 
-    console.log(datas)
-
-    const scoreValue = [
-        { value: 100, fill: 'transparent' },
-        { value: datas, fill:colors.primary },
-      ];
-  
-    if (error) {
-      return <span>Oups il y a eu un problème</span>
-    }
-
-    return isLoading ? (
-        <Loader />
-      ) : (
+    return (
         <CardContainer>
             <Title>Score</Title>
             <ScoreContent>
-                <ScoreResult>{datas}%</ScoreResult>
+                <ScoreResult>{100 * scoreData}%</ScoreResult>
                 <br />
                 <span>
                 de votre
@@ -73,18 +63,18 @@ function CardScore() {
                 </span>
             </ScoreContent>
             <ResponsiveContainer width="100%" height="100%">
-                <RadialBarChart
+              <RadialBarChart
                 width={200}
                 height={200}
                 startAngle={90}
                 endAngle={450}
                 innerRadius={90}
-                outerRadius={70}
+                outerRadius={55}
                 barSize={7}
                 data={scoreValue}
-                >
-                    <RadialBar cornerRadius={50} dataKey="value" />
-                </RadialBarChart>
+              >
+                <RadialBar cornerRadius={50} dataKey="value" />
+              </RadialBarChart>
             </ResponsiveContainer>
         </CardContainer>
     );
