@@ -1,27 +1,38 @@
 .bgSide {
-    width: 120px;
-    min-height: 100vh;
-    background-color: $ColorBlack;
+  position: relative;
+  width: 120px;
+  min-height: 100vh;
+  background-color: $ColorBlack;
 }
 
 .navSide {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 320px;
   width: 100%;
   margin-top: 200px;
   padding: 5px 0px;
 }
 
 .imgSide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 55px;
-    height: 55px;
-    padding: 5px;
-    border-radius: 6px;
-    background-color: $ColorWhite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 55px;
+  height: 55px;
+  padding: 5px;
+  border-radius: 6px;
+  background-color: $ColorWhite;
+}
+
+.copyright {
+  position: absolute;
+  width: 150px;
+  left: -15px;
+  top: 75%;
+  color: #fff;
+  font-size: 0.7em;
+  transform: rotate(270deg);
 }

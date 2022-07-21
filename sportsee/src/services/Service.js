@@ -1,4 +1,5 @@
-import { Mock } from './Mock.call';
+// import { Mock } from './Mock.call';
+import { Api } from "./Api.call";
 
 class Service {
   constructor(origin) {
@@ -18,4 +19,4 @@ class Service {
   }
 }
 
-export const service = new Service(new Mock());
+export const service = new Service(new Api());

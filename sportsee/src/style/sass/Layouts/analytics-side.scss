@@ -1,3 +1,6 @@
-.analytics-side{
-    width: 25%;
+.analytics-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25%;
 }

@@ -1,50 +1,64 @@
 // React
-import React from 'react';
+import React from "react";
+import { PropTypes } from "prop-types";
 
 // Components
-import CardKeyData from './CardKeyData';
+import CardKeyData from "./CardKeyData";
 
-// Tools
-import calories from '../../assets/calories.svg'
-import proteins from '../../assets/proteins.svg'
-import glucids from '../../assets/glucids.svg'
-import lipids from '../../assets/lipids.svg'
+// Assets
+import calories from "../../assets/calories.svg";
+import proteins from "../../assets/proteins.svg";
+import glucids from "../../assets/glucids.svg";
+import lipids from "../../assets/lipids.svg";
+
+/**
+ * Returns all User's KeyData components (calories, proteins, glucids, lipids)
+ * @function AnalyticsSide
+ * @param { Object } analyticsData
+ * @returns { JSX }
+ */
 
 function AnalyticsSide({ analyticsData }) {
-    return (
-        <aside className="analytics-side">
-          <CardKeyData
-            compoId="calo"
-            iconSrc={calories}
-            iconAlt="calories"
-            compoValue={`${new Intl.NumberFormat('en-IN', {
-              maximumSignificantDigits: 3,
-            }).format(analyticsData.calorieCount)}kCal`}
-            compoType="Calories"
-          />
-          <CardKeyData
-            compoId="prot"
-            iconSrc={proteins}
-            iconAlt="protéines"
-            compoValue={`${analyticsData.proteinCount}g`}
-            compoType="Protéines"
-          />
-          <CardKeyData
-            compoId="gluc"
-            iconSrc={glucids}
-            iconAlt="glucides"
-            compoValue={`${analyticsData.carbohydrateCount}g`}
-            compoType="Glucides"
-          />
-          <CardKeyData
-            compoId="lipi"
-            iconSrc={lipids}
-            iconAlt="lipides"
-            compoValue={`${analyticsData.lipidCount}g`}
-            compoType="Lipides"
-          />
-        </aside>
-      );
+  return (
+    <aside className="analytics-side">
+      <CardKeyData
+        dataId="calo"
+        iconSrc={calories}
+        iconAlt="calories"
+        dataValue={`${new Intl.NumberFormat("en-IN", {
+          maximumSignificantDigits: 3,
+        }).format(analyticsData.calorieCount)}kCal`}
+        dataType="Calories"
+      />
+      <CardKeyData
+        dataId="prot"
+        iconSrc={proteins}
+        iconAlt="protéines"
+        dataValue={`${analyticsData.proteinCount}g`}
+        dataType="Protéines"
+      />
+      <CardKeyData
+        dataId="gluc"
+        iconSrc={glucids}
+        iconAlt="glucides"
+        dataValue={`${analyticsData.carbohydrateCount}g`}
+        dataType="Glucides"
+      />
+      <CardKeyData
+        dataId="lipi"
+        iconSrc={lipids}
+        iconAlt="lipides"
+        dataValue={`${analyticsData.lipidCount}g`}
+        dataType="Lipides"
+      />
+    </aside>
+  );
 }
 
 export default AnalyticsSide;
+
+// Proptypes
+
+AnalyticsSide.propTypes = {
+  analyticsData: PropTypes.object.isRequired,
+};

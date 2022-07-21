@@ -1,16 +1,19 @@
 // Main SASS
 
 // Utils
-@import './Utils/variables.scss';
+@import "./Utils/variables.scss";
 // Base
-@import './Base/global.scss';
+@import "./Base/global.scss";
 // Components
-@import './Components/welcome.scss';
-@import './Components/loader.scss';
+@import "./Components/welcome.scss";
+@import "./Components/cards-keydata.scss";
+@import "./Components/activity.scss";
 // Layouts
-@import './Layouts/header.scss';
-@import './Layouts/sidemenu.scss';
-@import './Layouts/analytics-main.scss';
-@import './Layouts/analytics-side.scss';
+@import "./Layouts/header.scss";
+@import "./Layouts/sidemenu.scss";
+@import "./Layouts/analytics-main.scss";
+@import "./Layouts/analytics-side.scss";
+@import "./Layouts/custom-tooltip.scss";
+@import "./Layouts/cards-container.scss";
 // Pages
-@import './Pages/profil.scss';
+@import "./Pages/profil.scss";

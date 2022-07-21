@@ -1,5 +1,5 @@
 // React
-import React from 'react';
+import React from "react";
 import {
   BarChart,
   Bar,
@@ -8,44 +8,118 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-} from 'recharts';
+} from "recharts";
+import { PropTypes } from "prop-types";
 
-import styled from 'styled-components'
+// Assets
+import weightPoint from "../../../assets/weight-point.svg";
+import caloriesPoint from "../../../assets/calories-point.svg";
 
-const CardContainer = styled.div`
-    height: 320px;
-    width: 100%;
-    background-color: #FBFBFB;
-    border-radius: 5px;
-`
+/**
+ * Returns the tooltip's information on user hovers
+ * @function CustomTooltip
+ * @param { boolean } active: inital value false / becomes true when hover on BarChart
+ * @param { array } payload: contains datas to be displayed on hover
+ * @returns { JSX }
+ */
 
-
-function CardActivity({activity}) {
-
+const CustomTooltip = ({ active, payload }) => {
+  if (active && payload && payload.length) {
     return (
-        <CardContainer>
-            <ResponsiveContainer width="100%" height="100%">
-                <BarChart
-                    width={500}
-                    height={300}
-                    data={activity.sessions}
-                    margin={{
-                        top: 5,
-                        right: 30,
-                        left: 20,
-                        bottom: 5
-                    }}
-                    >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="day" />
-                    <YAxis orientation="right" domain={[60, 80]} />
-                    <Tooltip />
-                    <Bar dataKey="kilogram" fill='#282D30' barSize={10} radius={[10, 10, 0, 0]} />
-                    <Bar dataKey="calories" fill="#E60000" barSize={10} radius={[10, 10, 0, 0]} />
-                </BarChart>
-            </ResponsiveContainer>
-        </CardContainer>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          background: "#E60000",
+          height: 100,
+          color: "white",
+          fontSize: 15,
+          textAlign: "center",
+          padding: 20,
+        }}
+      >
+        <p>{`${payload[0].value} kg`}</p>
+        <p>{`${payload[1].value} kCal`}</p>
+      </div>
     );
   }
-  
-  export default CardActivity;
+  return null;
+};
+
+/**
+ * Returns User's activity with a double BarChart
+ * @function CardActivity
+ * @param { Object } activity
+ * @returns { JSX }
+ */
+
+function CardActivity({ activity }) {
+  return (
+    <div className="card-container-activity">
+      <div className="legend">
+        <h3>Activité quotidienne</h3>
+        <div className="legendItems">
+          <div>
+            <span>
+              <img src={weightPoint} alt="Légende Poids" />
+            </span>
+            Poids (kg)
+          </div>
+          <div>
+            <span>
+              <img src={caloriesPoint} alt="Légende Calories" />
+            </span>
+            Calories Brulées (kCal)
+          </div>
+        </div>
+      </div>
+      <ResponsiveContainer width="100%" height="80%">
+        <BarChart
+          width={500}
+          height={300}
+          data={activity.sessions}
+          margin={{
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid vertical={false} strokeDasharray="3 3" />
+          <XAxis dataKey="day" />
+          <YAxis orientation="right" domain={[60, 80]} axisLine={false} />
+          <Tooltip content={CustomTooltip} offset={30} />
+          <Bar
+            dataKey="kilogram"
+            fill="#282D30"
+            barSize={10}
+            radius={[10, 10, 0, 0]}
+          />
+          <Bar
+            dataKey="calories"
+            fill="#E60000"
+            barSize={10}
+            radius={[10, 10, 0, 0]}
+          />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}
+
+export default CardActivity;
+
+// Proptypes
+
+CustomTooltip.propTypes = {
+  active: PropTypes.bool,
+  payload: PropTypes.array,
+};
+
+CardActivity.propTypes = {
+  activity: PropTypes.oneOfType([
+    PropTypes.object.isRequired,
+    PropTypes.array.isRequired,
+  ]),
+};
