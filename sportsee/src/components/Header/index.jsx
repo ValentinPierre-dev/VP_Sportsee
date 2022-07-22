@@ -1,4 +1,6 @@
-import { StyledLink } from "../../style/Atoms";
+// React
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 // Assets
 import logo from "../../assets/logo.svg";
@@ -7,13 +9,13 @@ function Header() {
   return (
     <div className="bgHeader">
       <nav className="navHeader">
-        <StyledLink to="/">
+        <Link to="/">
           <img className="logo" src={logo} alt="logo" />
-        </StyledLink>
-        <StyledLink to="/">Accueil</StyledLink>
-        <StyledLink to="/">Profil</StyledLink>
-        <StyledLink to="/">Réglage</StyledLink>
-        <StyledLink to="/">Communauté</StyledLink>
+        </Link>
+        <Link to="/">Accueil</Link>
+        <Link to="/">Profil</Link>
+        <Link to="/">Réglage</Link>
+        <Link to="/">Communauté</Link>
       </nav>
     </div>
   );

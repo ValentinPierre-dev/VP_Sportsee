@@ -6,6 +6,7 @@ import "./style/sass/main.scss";
 import Header from "./components/Header";
 import SideMenu from "./components/SideMenu";
 import Profil from "./pages/Profil";
+import Error from "./pages/Error";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -16,6 +17,7 @@ root.render(
       <Routes>
         <Route path="/" exact element={<Navigate replace to="/user/12" />} />
         <Route path="/user/:id/" element={<Profil />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </div>
   </BrowserRouter>

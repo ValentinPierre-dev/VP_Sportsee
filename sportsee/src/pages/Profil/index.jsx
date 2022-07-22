@@ -7,6 +7,7 @@ import { service } from "../../services/Service.js";
 
 // Components
 import Welcome from "../../components/Welcome";
+import Error from "../Error/index.jsx";
 import Loading from "../../components/Loading";
 import AnalyticsMain from "../../components/AnalyticsMain/index.jsx";
 import AnalyticsSide from "../../components/AnalyticsSide/index.jsx";
@@ -77,12 +78,12 @@ function Profil() {
     ) {
       setLoading(false);
       console.log("error");
-      return <Navigate to="not-found" />;
+      return <Navigate to="error" />;
     }
     return <Loading />;
   }
 
-  return (
+  return keyData ? (
     <div className="profil">
       <Welcome firstname={keyData} />
       <div className="profil-content">
@@ -95,6 +96,8 @@ function Profil() {
         <AnalyticsSide analyticsData={keyData.keyData} />
       </div>
     </div>
+  ) : (
+    <Error />
   );
 }
 
