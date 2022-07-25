@@ -46,6 +46,8 @@ function CardPerformance({ performance }) {
           cy="50%"
           outerRadius="65%"
           data={performance.data}
+          startAngle={30}
+          endAngle={-330}
         >
           <PolarGrid radialLines={false} />
 

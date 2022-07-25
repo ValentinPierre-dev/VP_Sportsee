@@ -42,8 +42,8 @@ export class Api {
   async getUserPerformance(userId) {
     const response = await fetch(baseURL + userId + "/performance");
 
-    const perfomranceData = await response.json();
+    const performanceData = await response.json();
 
-    return perfomranceData.data;
+    return performanceData.data;
   }
 }

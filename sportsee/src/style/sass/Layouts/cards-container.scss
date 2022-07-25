@@ -1,13 +1,14 @@
 .card-container {
   &-activity {
-    height: 350px;
+    height: 35vh;
     width: 100%;
     background-color: #fbfbfb;
     border-radius: 5px;
+    margin-bottom: 3vh;
   }
   &-average {
     position: relative;
-    height: 260px;
+    height: 30vh;
     width: 31%;
     background-color: red;
     border-radius: 5px;
@@ -18,17 +19,17 @@
       left: 2em;
       color: rgba(255, 255, 255, 0.7);
       z-index: 1;
-      font-size: 0.8rem;
+      font-size: 0.9vw;
     }
   }
   &-performance {
-    height: 260px;
+    height: 30vh;
     width: 31%;
     background-color: #282d30;
     border-radius: 5px;
   }
   &-score {
-    height: 260px;
+    height: 30vh;
     width: 31%;
     background-color: #fbfbfb;
     border-radius: 5px;
@@ -36,7 +37,7 @@
     h3 {
       position: absolute;
       margin: 20px;
-      font-size: 1.2rem;
+      font-size: 0.9vw;
     }
     .score-content {
       position: absolute;
