@@ -10,6 +10,7 @@ import {
 } from "recharts";
 import { PropTypes } from "prop-types";
 
+
 /**
  * Returns the tooltip's information on user hovers
  * @function CustomTooltip
@@ -36,6 +37,7 @@ const CustomTooltip = ({ active, payload }) => {
   }
   return null;
 };
+
 
 /**
  * Returns User's average sessions with a LineChart
@@ -67,7 +69,7 @@ function CardAverage({ average }) {
             type="monotone"
             dataKey="sessionLength"
             dot={false}
-            activeDot={{ r: 5, strokeOpacity: 0.2, strokeWidth: 10 }}
+            activeDot={{ r: 4, strokeOpacity: 0.5, strokeWidth: 8, fill: "#fff"}}
             stroke="rgba(255, 255, 255, 1)"
             strokeWidth={2}
           />
@@ -91,7 +93,7 @@ function CardAverage({ average }) {
           />
           <Tooltip
             content={CustomTooltip}
-            cursor={{ stroke: "black", strokeOpacity: 0.2, strokeWidth: 40 }}
+            cursor={{ stroke: 'black', strokeOpacity: 0.2, strokeWidth: 40 }}
             offset={30}
           />
         </LineChart>

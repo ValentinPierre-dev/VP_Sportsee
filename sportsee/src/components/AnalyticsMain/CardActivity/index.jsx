@@ -55,7 +55,7 @@ const CustomTooltip = ({ active, payload }) => {
  */
 
 function CardActivity({ activity }) {
-  return (
+  return activity.sessions ? (
     <div className="card-container-activity">
       <div className="legend">
         <h3>Activité quotidienne</h3>
@@ -87,8 +87,19 @@ function CardActivity({ activity }) {
           }}
         >
           <CartesianGrid vertical={false} strokeDasharray="3 3" />
-          <XAxis dataKey="day" />
-          <YAxis orientation="right" domain={[60, 80]} axisLine={false} />
+          <XAxis
+            dataKey="day"
+            tickFormatter={(day) => day.slice(-1)} 
+            tickLine={false}
+            axisLine={false}
+            tickMargin={15}
+          />
+          <YAxis
+            orientation="right"
+            axisLine={false}
+            tickLine={false}
+            tickMargin={25}
+          />
           <Tooltip content={CustomTooltip} offset={30} />
           <Bar
             dataKey="kilogram"
@@ -105,6 +116,8 @@ function CardActivity({ activity }) {
         </BarChart>
       </ResponsiveContainer>
     </div>
+  ) : (
+    <div></div>
   );
 }
 

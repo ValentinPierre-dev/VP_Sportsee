@@ -1,6 +1,6 @@
 // React
 import React, { useEffect, useState } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 // Service
 import { service } from "../../services/Service.js";
@@ -14,7 +14,7 @@ import AnalyticsSide from "../../components/AnalyticsSide/index.jsx";
 
 function Profil() {
   // get id from url
-  const userId = useParams().id;
+  const userId = +useParams().id;
 
   // init State
   const [loading, setLoading] = useState(true);
@@ -78,7 +78,7 @@ function Profil() {
     ) {
       setLoading(false);
       console.log("error");
-      return <Navigate to="error" />;
+      return <Error />;
     }
     return <Loading />;
   }

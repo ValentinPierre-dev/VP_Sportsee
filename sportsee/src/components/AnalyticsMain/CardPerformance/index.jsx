@@ -36,7 +36,8 @@ const FormatKind = (tickItem) => {
  */
 
 function CardPerformance({ performance }) {
-  return (
+  
+  return performance.data ? (
     <div className="card-container-performance">
       <ResponsiveContainer width="100%" height="100%">
         <RadarChart
@@ -72,6 +73,8 @@ function CardPerformance({ performance }) {
         </RadarChart>
       </ResponsiveContainer>
     </div>
+  ) : (
+    <div></div>
   );
 }
 

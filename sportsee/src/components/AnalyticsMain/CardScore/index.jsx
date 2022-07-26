@@ -57,8 +57,5 @@ export default CardScore;
 // Proptypes
 
 CardScore.propTypes = {
-  score: PropTypes.oneOfType([
-    PropTypes.object.isRequired,
-    PropTypes.array.isRequired,
-  ]),
+  score: PropTypes.object.isRequired
 };
