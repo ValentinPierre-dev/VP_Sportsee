@@ -19,7 +19,7 @@ import { PropTypes } from "prop-types";
  * @returns { JSX }
  */
 
-const CustomTooltip = ({ active, payload }) => {
+ const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     return (
       <div
@@ -37,6 +37,17 @@ const CustomTooltip = ({ active, payload }) => {
   }
   return null;
 };
+
+
+const CustomizedCursor = ({ points }) => {
+  const xPos = points[0].x;
+  console.log(xPos)
+
+  return (
+      <rect x={xPos} y={0} width={xPos * 100} height={"100%"} fill="rgba(0, 0, 0, 0.1)" />
+  );
+};
+
 
 
 /**
@@ -65,12 +76,18 @@ function CardAverage({ average }) {
           data={average.sessions}
           margin={{ top: 0, right: 10, bottom: 0, left: 10 }}
         >
+          <defs>
+            <linearGradient id="colorUv" x1="1" y1="0" x2="0" y2="0">
+              <stop offset="0%" stopColor="#ffffff" stopOpacity={1} />
+              <stop offset="100%" stopColor="#ffffff" stopOpacity={0.5} />
+            </linearGradient>
+          </defs>
           <Line
             type="monotone"
             dataKey="sessionLength"
             dot={false}
             activeDot={{ r: 4, strokeOpacity: 0.5, strokeWidth: 8, fill: "#fff"}}
-            stroke="rgba(255, 255, 255, 1)"
+            stroke="url(#colorUv)"
             strokeWidth={2}
           />
           <XAxis
@@ -93,8 +110,8 @@ function CardAverage({ average }) {
           />
           <Tooltip
             content={CustomTooltip}
-            cursor={{ stroke: 'black', strokeOpacity: 0.2, strokeWidth: 40 }}
-            offset={30}
+            cursor={<CustomizedCursor />}
+            offset={20}
           />
         </LineChart>
       </ResponsiveContainer>
