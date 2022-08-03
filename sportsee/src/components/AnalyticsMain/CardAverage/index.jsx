@@ -38,13 +38,17 @@ import { PropTypes } from "prop-types";
   return null;
 };
 
+/**
+ * Returns a customized Shape for the tooltip cursor
+ * @function CustomizedCursor
+ * @param { array } points: array of shape's points
+ * @returns { JSX }
+ */
 
 const CustomizedCursor = ({ points }) => {
   const xPos = points[0].x;
-  console.log(xPos)
-
   return (
-      <rect x={xPos} y={0} width={xPos * 100} height={"100%"} fill="rgba(0, 0, 0, 0.1)" />
+      <rect x={xPos} y={0} width={"100%"} height={"100%"} fill="rgba(0, 0, 0, 0.1)" />
   );
 };
 
@@ -86,7 +90,7 @@ function CardAverage({ average }) {
             type="monotone"
             dataKey="sessionLength"
             dot={false}
-            activeDot={{ r: 4, strokeOpacity: 0.5, strokeWidth: 8, fill: "#fff"}}
+            activeDot={{ r: 4, strokeOpacity: 0.3, strokeWidth: 8, fill: "#fff"}}
             stroke="url(#colorUv)"
             strokeWidth={2}
           />
@@ -126,6 +130,10 @@ export default CardAverage;
 CustomTooltip.propTypes = {
   active: PropTypes.bool,
   payload: PropTypes.array,
+};
+
+CustomizedCursor.propTypes = {
+  points: PropTypes.array,
 };
 
 CardAverage.propTypes = {
