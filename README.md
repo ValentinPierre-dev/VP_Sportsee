@@ -74,4 +74,4 @@ Something is already running on port 3000. Would you like to run the app on anot
 
 Press "Y" and you can now navigate to http://localhost:3001 
 
-Back-end and Front-end are connected now, good job !
+Back-end and Front-end are now connected, good job !
