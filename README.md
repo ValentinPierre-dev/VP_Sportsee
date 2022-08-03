@@ -15,9 +15,9 @@ This project was powered with Create React App and use <br>
 [Visual Studio Code](https://code.visualstudio.com/) is recommended to edit and launch this project.
 <br>
 <br>
-Please,  check preriquire and follow the steps below to get in the project
+Please,  check prerequisites and follow the steps below to get in the project
 <br>
-Prerequire: <br>
+Prerequisites: <br>
   - [NodeJS (version 16+)](https://nodejs.org/en/download/)
 
 ---
