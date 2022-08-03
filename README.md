@@ -50,9 +50,13 @@ Magic happens on port 3000
 ## Frontend
 ### Installation
 
-#### Clone [Front-end repository](https://github.com/ValentinPierre-dev/ValentinPierre_12_072022) in a second terminal and move to directory
+#### Clone [Front-end repository](https://github.com/ValentinPierre-dev/ValentinPierre_12_072022) in a new terminal
 ```shell 
 git clone https://github.com/ValentinPierre-dev/ValentinPierre_12_072022
+```
+#### Navigate to the directory
+```shell 
+cd sportsee
 ```
 #### Install all dependencies
 ```shell
