@@ -1,11 +1,11 @@
-# ValentinPierre_12_072022
-## OpenClassrooms project #12 - Sportsee
-Projet 12 - Développez un tableau de bord d'analytics avec React
-
+# Sportsee project
 
 ![JavaScript](https://img.shields.io/badge/Language-JS-yellow) ![REACT](https://img.shields.io/badge/Framework-React-blue) ![SASS](https://img.shields.io/badge/Style-SASS-ff69b4) ![Rechart](https://img.shields.io/badge/Graph-Rechart-red)
 
+## About
+SportSee is a startup dedicated to sports coaching wishing to launch a new version of the profile page of its users. The goal was to develop this profile page with React while managing the display of each user available in the database. The analytics components were developed with Recharts.
 
+## How to use
 Getting Started. <br>
 This project was powered with Create React App and use <br>
   - React (18.2.0)
